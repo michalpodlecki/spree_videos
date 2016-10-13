@@ -3,17 +3,22 @@ module Spree
     respond_to :html
     
     def index
-      @videos = Video.all(:joins => :product, :conditions => 'spree_products.deleted_at is NULL')
+      @videos = Video.all.joins(:product).where('spree_products.deleted_at is NULL')
     end
 
     def product_index
-      @product = Product.find_by_permalink(params[:product_id])
+      @product = Product.find_by(slug: params[:product_id])
       @videos = @product.videos.all(:order => 'position')
     end
 
     def show
-      video = Video.find(params[:id])
-      client = YouTubeIt::Client.new
+      if params[:youtube_ref]
+        @video = Video.find_by(youtube_ref: params[:youtube_ref])
+      else params[:id]
+        @video = Video.find(params[:id])
+      end
+
+      @client = YouTubeIt::Client.new
     end
   end
 end
