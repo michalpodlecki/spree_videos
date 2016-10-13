@@ -4,7 +4,7 @@ module SpreeVideos
       source_root File.expand_path('../../../templates/', __FILE__)
 
       def add_javascripts
-        append_file "app/assets/javascripts/store/all.js", "//= require store/spree_videos\n" 
+        append_file "app/assets/javascripts/application.js", "//= require store/spree_videos\n"
       end
       
       # def add_stylesheets

@@ -1,0 +1,11 @@
+%h1 Product Videos
+%table
+  %tr
+    %th Youtube ref
+    %th Product
+    %th Show
+  - @videos.each do |video|
+    %tr
+      %td= video.youtube_ref
+      %td= video.product_id
+      %td= link_to 'Show', video
