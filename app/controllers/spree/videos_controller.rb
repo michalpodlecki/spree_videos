@@ -8,7 +8,7 @@ module Spree
 
     def product_index
       @product = Product.find_by(slug: params[:product_id])
-      @videos = @product.videos.all(:order => 'position')
+      @videos = @product.videos.all(order: 'position')
     end
 
     def show

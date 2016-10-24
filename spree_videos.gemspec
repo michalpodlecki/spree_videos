@@ -3,9 +3,9 @@ Gem::Specification.new do |s|
   s.name        = 'spree_videos'
   s.version     = '3.1.0'
   s.summary     = 'Adds youtube videos to Spree commerce products'
-  s.description = 'Add multiuple youtube videos, and a thumbnail selector' + 
+  s.description = 'Add multiple youtube videos, and a thumbnail selector' +
                   'for those products to a Spree commerce product'
-  s.required_ruby_version = '>= 1.8.7'
+  s.required_ruby_version = '>= 1.9.1'
 
   s.author            = 'Michael Bianco'
   s.email             = 'info@cliffsidedev.com'

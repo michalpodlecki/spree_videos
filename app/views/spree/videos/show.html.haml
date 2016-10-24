@@ -2,16 +2,12 @@
 %p#notice= notice
 = image_tag(@video.thumbnails.first.url)
 %p
-  %b Title:
-  = @video.title
+  %b Title: #{@video.title}
 %p
-  %b User:
-  = @video.author.name
+  %b User: #{@video.author.name}
 %p
-  %b Published:
-  = @video.published_at
+  %b Published: #{@video.published_at}
 %p
-  %b Description:
-  = @video.description
+  %b Description: #{@video.description}
 %p
   =! @video.embed_html5({class: 'video-player', id: 'my-video', width: '425', height: '350', frameborder: '1'})
