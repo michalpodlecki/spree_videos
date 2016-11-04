@@ -2,4 +2,5 @@
 - if videos.size > 1
   = content_tag(:div, id: 'video-thumbnails', class: 'spree-video-thumbnails') do
     - videos.map(&:youtube_data).each do |video|
-      = link_to image_tag(video.thumbnails.first.url, :width => width), video_path(youtube_ref: video.unique_id), title: video.title, data: {'video-id' => video.unique_id}, remote: true
+      - product_video = videos.select{|v| v.youtube_ref == video.unique_id}.try(:first)
+      = link_to image_tag(video.thumbnails.first.url, :width => width), video_path(id: product_video, youtube_ref: video.unique_id), title: video.title, data: {'video-id' => video.unique_id}, remote: true
