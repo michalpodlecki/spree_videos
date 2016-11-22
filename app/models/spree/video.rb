@@ -7,14 +7,22 @@ module Spree
     validates_uniqueness_of :youtube_ref, :scope => [:watchable_id, :watchable_type]
 
     def youtube_data
-      youtube_data = Yt::Models::Video.new({})
-      youtube_data.instance_variable_set(:@unique_id, youtube_ref)
-      youtube_data.instance_variable_set(:@thumbnails, [OpenStruct.new(url: "https://i.ytimg.com/vi/#{youtube_ref}/default.jpg")])
+      youtube_data = Yt::Models::Video.new(id: youtube_ref)
+      # youtube_data.instance_variable_set(:@unique_id, youtube_ref)
+      # youtube_data.instance_variable_set(:@thumbnails, [OpenStruct.new(url: "https://i.ytimg.com/vi/#{youtube_ref}/default.jpg")])
       youtube_data
     end
 
     def youtube_link
       "https://www.youtube.com/watch?v=#{youtube_ref}"
+    end
+
+    def embed_html(html5_config = {}, youtube_url_params = {})
+      if youtube_url_params.empty?
+        youtube_data.embed_html
+      else
+        youtube_data.embed_html.sub(youtube_data.id, "#{youtube_data.id}?#{youtube_url_params.map{|k,v| "#{k}=#{v}"}.join('&')}")
+      end
     end
 
     after_validation do

@@ -1,6 +1,6 @@
 = link_to 'Back', videos_path
 %p#notice= notice
-= image_tag(@video.thumbnails.first.url)
+= image_tag(@video.thumbnail_url)
 %p
   %b Title: #{@video.title}
 %p
@@ -10,4 +10,5 @@
 %p
   %b Description: #{@video.description}
 %p
-  =! @video.embed_html5({class: 'video-player', id: 'my-video', width: '425', height: '350', frameborder: '1'})
+  -#=! @video.embed_html({class: 'video-player', id: 'my-video', width: '425', height: '350', frameborder: '1'})
+  =! @video.embed_html
