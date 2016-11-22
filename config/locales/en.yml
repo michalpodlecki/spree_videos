@@ -1,4 +1,24 @@
 en:
+  activerecord:
+    attributes:
+      spree/videos:
+        youtube_ref:  Id
+        position:     pos
+        created_at:   created at
+        updated_at:   updated at
+        title:        Title
+        description:  Description
+        duration:     Duration
+        views:        Views
+        likes:        Likes
+        dislikes:     DisLikes
+        comments:     Comments
+        subscribers:  Subscr
+        thumbnail_url: Thumb url
+    models:
+      spree/video:
+        one: Video
+        other: Videos
   video: Video
   videos: Videos
   new_video: New Video

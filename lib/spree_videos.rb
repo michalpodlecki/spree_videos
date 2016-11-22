@@ -1,5 +1,6 @@
 require 'spree_core'
-require 'youtube_it'
+# require 'youtube_it'
+require 'yt'
 require 'spree/videos/configuration'
 
 module Spree

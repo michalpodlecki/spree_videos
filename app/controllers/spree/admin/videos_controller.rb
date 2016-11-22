@@ -18,11 +18,23 @@ module Spree
       private
   
       def location_after_save
-        admin_product_videos_url(@product)
+        if @product
+          admin_product_videos_url(@product)
+        else
+          admin_videos_url
+        end
+      end
+
+      def location_after_destroy
+        if @product
+          admin_product_videos_url(@product)
+        else
+          admin_videos_url
+        end
       end
 
       def load_data
-        @product = Product.find_by(slug: params[:product_id])
+        @product = Product.find_by(slug: params[:product_id] || (params[:video] && params[:video][:product_id]))
       end
 
       def set_product

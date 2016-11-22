@@ -12,5 +12,6 @@ Spree::Core::Engine.routes.append do
         end
       end
     end
+    resources :videos, except: [:show]
   end
 end
