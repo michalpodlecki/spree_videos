@@ -6,6 +6,10 @@ module Spree
     validates_presence_of :youtube_ref
     validates_uniqueness_of :youtube_ref, :scope => [:watchable_id, :watchable_type]
 
+    scope :show_on_home_videos, -> { where show_on_home: true }
+    scope :streams, -> { where stream: true }
+    scope :stream_or_home_videos, -> { where('stream = true OR show_on_home = true') }
+
     def youtube_data
       youtube_data = Yt::Models::Video.new(id: youtube_ref)
       # youtube_data.instance_variable_set(:@unique_id, youtube_ref)
