@@ -3,7 +3,7 @@ module Spree
     respond_to :html
     
     def index
-      @videos = Video.all.joins(:product).where('spree_products.deleted_at is NULL')
+      @videos = Video.all.map{|video| video if video.watchable && video.watchable.try(:deleted_at).nil?}.compact
     end
 
     def product_index
