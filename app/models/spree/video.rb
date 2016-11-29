@@ -11,10 +11,21 @@ module Spree
     scope :stream_or_home_videos, -> { where('stream = true OR show_on_home = true') }
 
     def youtube_data
-      youtube_data = Yt::Models::Video.new(id: youtube_ref)
-      # youtube_data.instance_variable_set(:@unique_id, youtube_ref)
-      # youtube_data.instance_variable_set(:@thumbnails, [OpenStruct.new(url: "https://i.ytimg.com/vi/#{youtube_ref}/default.jpg")])
-      youtube_data
+      begin
+        youtube_data = Yt::Models::Video.new(id: youtube_ref)
+        youtube_data.title # check for api errors
+        youtube_data
+      rescue Yt::Errors::NoItems
+        OpenStruct.new(
+            id: youtube_ref,
+            title: 'Video has been deleted',
+            description: '',
+            thumbnail_url: (URI.join(Spree::Core::Engine.routes.url_helpers.root_url, "assets/thumb_not_found.png").to_s rescue '/assets/thumb_not_found.png'),
+            duration: 0,
+            views: 0,
+            embed_html: ''
+        )
+      end
     end
 
     def youtube_link
