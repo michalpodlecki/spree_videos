@@ -1,0 +1,10 @@
+<% cache ['product-videos', product] do %>
+  <% if product.videos.present? %>
+    <div id="product-videos">
+      <div class="embed-responsive embed-responsive-16by9 spree-embed-video">
+        <%= render 'video_player', video: video %>
+      </div>
+      <%= render 'video_thumbnails', videos: product.videos %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,11 @@
+en:
+  video: Film
+  videos: Filmy
+  new_video: Nowy film
+  youtube_ref: YouTube ID
+  product_video_index: "%{name} Videos"
+
+  helpers:
+    label:
+      video:
+        youtube_ref: Link YouTube lub ID

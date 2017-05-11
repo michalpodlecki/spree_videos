@@ -1,0 +1,16 @@
+<h4><%= t('new_video') %></h4>
+<%= form_for(:video, url: {controller: 'videos', action: 'create' }, html: {multipart: true }) do |form| %>
+  <table class="basic-table">
+    <%= render partial: 'form', locals: { :f => form } %>
+  </table>
+  <p class="form-buttons">
+    <%= render partial: 'spree/admin/shared/edit_resource_links', locals: {collection_url: {controller: 'videos', action: 'create' }} %>
+  </p>
+<% end %>
+
+<script>
+  jQuery('#cancel_link').click(function (event) {
+    jQuery('#new_video_link').show();
+    jQuery('#video').html('');
+  });
+</script>

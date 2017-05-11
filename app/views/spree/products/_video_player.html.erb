@@ -1,5 +1,6 @@
-- return unless video.present?
-:ruby
+<%
+  return unless video.present?
+
   youtube_url_params ||= {}
   html_options ||= {}
 
@@ -34,6 +35,6 @@
       html5_config[:width] = width
     end
   end
+%>
 
-!= video.youtube_data.embed_html5(html5_config)
-
+<%= raw video.youtube_data.embed_html5(html5_config) %>
